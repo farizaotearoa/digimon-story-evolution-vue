@@ -1,4 +1,4 @@
-# Digimon Story Evolution
+# Digimon Story Evolution Vue (Frontend)
 
 ## Introduction
 

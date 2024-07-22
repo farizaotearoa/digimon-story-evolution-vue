@@ -1,18 +1,18 @@
 <template>
     <div style="text-align: center;">
-        <div class="view-buttons">
+        <!-- <div class="view-buttons">
             <button @click="setGridView" :class="{ active: isGridView }">
                 <img src="@/assets/images/icon/grid-view.svg" alt="Grid View">
             </button>
             <button @click="setListView" :class="{ active: !isGridView }">
                 <img src="@/assets/images/icon/list-view.svg" alt="List View">
             </button>
-        </div>
+        </div> -->
         <div v-if="!digimons">
             <p class="no-data">No data to display</p>
         </div>
         <div v-else>
-            <div v-if="isGridView" class="grid-container" style="margin-top: 20px">
+            <div v-if="isGridView" class="grid-container">
                 <div v-for="digimon in digimons" :key="digimon.number" class="grid-item">
                     <img :src="`http://localhost:9706/${digimon.image}`" class="image" :alt="digimon.name"
                         :title="digimon.name">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <ul v-else class="list-container">
+            <!-- <ul v-else class="list-container"> 
                 <li v-for="digimon in digimons" :key="digimon.number" class="list-item">
                     <div class="flex-container">
                         <div>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
     <div class="pagination-controls">
@@ -215,12 +215,12 @@ export default {
                     return 'no-stage';
             }
         },
-        setGridView() {
-            this.isGridView = true;
-        },
-        setListView() {
-            this.isGridView = false;
-        },
+        // setGridView() {
+        //     this.isGridView = true;
+        // },
+        // setListView() {
+        //     this.isGridView = false;
+        // },
         formattedNumber(number) {
             if (number < 10) {
                 return `00${number}`;
