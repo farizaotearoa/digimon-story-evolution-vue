@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <DigimonHeader />
-    <DigimonList />
+    <div v-if="!selectedDigimonNumber">
+      <DigimonList @digimon-selected="handleDigimonSelected"/>
+    </div>
+    <div v-else>
+      <DigimonDetails :digimon-number="selectedDigimonNumber" @back="handleBack"/>
+    </div>
     <DigimonFooter />
   </div>
 </template>
@@ -9,6 +14,7 @@
 <script>
 import DigimonHeader from './components/DigimonHeader.vue'
 import DigimonList from './components/DigimonList/DigimonListLayout.vue';
+import DigimonDetails from './components/DigimonDetails/DigimonDetailsLayout.vue';
 import DigimonFooter from './components/DigimonFooter.vue'
 
 export default {
@@ -16,7 +22,22 @@ export default {
   components: {
     DigimonHeader,
     DigimonList,
+    DigimonDetails,
     DigimonFooter
+  },
+  data() {
+    return {
+      selectedDigimonNumber: null
+    };
+  },
+  methods: {
+    handleDigimonSelected(digimonNumber) {
+      this.selectedDigimonNumber = digimonNumber;
+    },
+    handleBack() {
+      console.log('back');
+      this.selectedDigimonNumber = null;
+    }
   }
 };
 </script>

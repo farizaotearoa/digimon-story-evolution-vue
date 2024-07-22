@@ -13,7 +13,8 @@
         </div>
         <div v-else>
             <div v-if="isGridView" class="grid-container">
-                <div v-for="digimon in digimons" :key="digimon.number" class="grid-item">
+                <div v-for="digimon in digimons" :key="digimon.number" @click="selectDigimon(digimon.number)"
+                    class="grid-item">
                     <img :src="`http://localhost:9706/${digimon.image}`" class="image" :alt="digimon.name"
                         :title="digimon.name">
                     <div class="flex-container">
@@ -232,6 +233,8 @@ export default {
         },
         toLowerCase(str) {
             return str.toLowerCase();
+        }, selectDigimon(digimonNumber) {
+            this.$emit('digimon-selected', digimonNumber);
         }
     }
 };
@@ -272,6 +275,8 @@ export default {
     padding: 20px;
     text-align: center;
     border: 2px solid #374e98;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 

@@ -1,10 +1,10 @@
 <template>
     <div class="main">
-        <img :src="`http://localhost:9706/images/title/digimon-list.png`" class="title" alt="Digimon title">
+        <img :src="`http://localhost:9706/images/title/digimon-list.png`" class="title" alt="Digimon List">
         <div class="main-layout">
             <DigimonListFilter class="filter-section" @filter-change="updateFilters" />
             <div class="list-section">
-                <DigimonList :filters="filters" />
+                <DigimonList :filters="filters" @digimon-selected="handleDigimonSelected" />
             </div>
         </div>
     </div>
@@ -35,6 +35,9 @@ export default {
                 types: newFilters.types || [],
                 attributes: newFilters.attributes || []
             };
+        },
+        handleDigimonSelected(digimonNumber) {
+            this.$emit('digimon-selected', digimonNumber);
         }
     }
 }
