@@ -2,10 +2,11 @@
   <div id="app">
     <DigimonHeader />
     <div v-if="!selectedDigimonNumber">
-      <DigimonList @digimon-selected="handleDigimonSelected"/>
+      <DigimonList @digimon-selected="handleDigimonSelected" />
     </div>
     <div v-else>
-      <DigimonDetails :digimon-number="selectedDigimonNumber" @back="handleBack"/>
+      <DigimonDetails :digimon-number="selectedDigimonNumber" @back="handleBack"
+        @digimon-selected="handleDigimonSelected" />
     </div>
     <DigimonFooter />
   </div>

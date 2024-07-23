@@ -5,6 +5,7 @@
             <DigimonInfo @back="handleBack" :digimon="digimonDetails" class="left-section" />
             <div class="right-section">
                 <DigimonDescription :digimon="digimonDetails" />
+                <DigimonEvolutionChart :digimon="digimonDetails" @digimon-selected="handleDigimonSelected" />
             </div>
         </div>
     </div>
@@ -13,6 +14,7 @@
 <script>
 import DigimonDescription from './DigimonDescription.vue'
 import DigimonInfo from './DigimonInfo.vue'
+import DigimonEvolutionChart from './DigimonEvolutionChart.vue';
 import axios from '../../axios';
 
 export default {
@@ -20,6 +22,7 @@ export default {
     components: {
         DigimonDescription,
         DigimonInfo,
+        DigimonEvolutionChart
     },
     data() {
         return {
@@ -48,6 +51,9 @@ export default {
         },
         handleBack() {
             this.$emit('back');
+        },
+        handleDigimonSelected(digimonNumber) {
+            this.$emit('digimon-selected', digimonNumber);
         }
     }
 }
@@ -78,7 +84,7 @@ export default {
 }
 
 .title {
-    width: 500px;
+    width: 650px;
     margin-bottom: 50px;
 }
 </style>
