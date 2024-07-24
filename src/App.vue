@@ -34,10 +34,12 @@ export default {
   methods: {
     handleDigimonSelected(digimonNumber) {
       this.selectedDigimonNumber = digimonNumber;
+      window.scrollTo(0, 0);
     },
     handleBack() {
       console.log('back');
       this.selectedDigimonNumber = null;
+      window.scrollTo(0, 0);
     }
   }
 };
