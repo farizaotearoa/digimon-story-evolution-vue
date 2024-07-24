@@ -2,6 +2,11 @@
     <div class="filter-component">
         <div class="filter-container">
             <p class="title">Filter</p>
+            <div style="text-align: right;">
+                <button @click="resetFilter" class="reset-button">
+                    <p class="reset">Reset</p>
+                </button>
+            </div>
             <div class="stage">
                 <p class="filter-title">Stage</p>
                 <div v-for="stage in stages" :key="stage">
@@ -52,6 +57,12 @@ export default {
                 types: this.selectedTypes,
                 attributes: this.selectedAttributes
             });
+        },
+        resetFilter() {
+            this.selectedStages = [],
+            this.selectedTypes= [],
+            this.selectedAttributes= [],
+            this.emitFilterChange
         }
     }
 }
@@ -88,6 +99,24 @@ export default {
     font-weight: bold;
     font-size: 1.3em;
     text-align: center;
+}
+
+.reset {
+    font-size: 0.9em;
+    text-decoration: none;
+    margin: 0px;
+    color: #757575;
+}
+
+.reset:hover {
+    text-decoration: underline;
+}
+
+.reset-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .filter-title {
