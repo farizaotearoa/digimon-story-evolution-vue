@@ -8,6 +8,17 @@
                 <img src="@/assets/images/icon/list-view.svg" alt="List View">
             </button>
         </div> -->
+        <div style="display: flex; margin-bottom: 10px; align-items: center;">
+            <p style="margin: 0;font-size: 1em;">Sort By:</p>
+            <select id="sort-by" class="sort-by" v-model="digimonListRequest.sort_by" @change="fetchDigimons">
+                <option v-for="sBy in sortBy" :key="toLowerCase(sBy)" :value="toLowerCase(sBy)">{{ sBy }}</option>
+            </select>
+            <svg v-on:click="toggleSortOrder" class="sort-icon" viewBox="0 0 24 24" fill="#374e98">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                <path v-if="isAsc" d="M12 8l-4 4h3v4h2v-4h3l-4-4z" fill="white" />
+                <path v-else d="M12 16l4-4h-3v-4h-2v4H8l4 4z" fill="white" />
+            </svg>
+        </div>
         <div v-if="!digimons">
             <p class="no-data">No data to display</p>
         </div>
@@ -119,8 +130,10 @@ export default {
                 sort_order: "asc"
             },
             pageSizes: [20, 40, 80],
+            sortBy: ["Number", "Name", "Stage"],
             totalItems: 0,
-            isGridView: true
+            isGridView: true,
+            isAsc: true
         };
     },
     watch: {
@@ -233,8 +246,18 @@ export default {
         },
         toLowerCase(str) {
             return str.toLowerCase();
-        }, selectDigimon(digimonNumber) {
+        },
+        selectDigimon(digimonNumber) {
             this.$emit('digimon-selected', digimonNumber);
+        },
+        toggleSortOrder() {
+            this.isAsc = !this.isAsc;
+            if (this.isAsc) {
+                this.digimonListRequest.sort_order = "asc"
+            } else {
+                this.digimonListRequest.sort_order = "desc"
+            }
+            this.fetchDigimons()
         }
     }
 };
@@ -463,5 +486,22 @@ export default {
 .page-numbers button.active {
     background-color: #374e98;
     color: #fff;
+}
+
+.sort-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.sort-desc {
+    margin-top: -4px
+}
+
+.sort-by {
+    margin: 0 5px 0 7px;
+    font-size: 0.8em;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 </style>
