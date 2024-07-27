@@ -9,7 +9,7 @@
         </button>
         <div class="info-section">
             <div style="padding:20px;">
-                <img :src="`http://localhost:9706/${digimon.image}`" :alt="digimon.name" :title="digimon.name">
+                <img :src="getImageUrl(digimon.image)" :alt="digimon.name" :title="digimon.name">
             </div>
             <div class="info-container">
                 <div class="info">
@@ -70,6 +70,9 @@ export default {
         },
         toLowerCase(str) {
             return str.toLowerCase();
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <img :src="`http://localhost:9706/images/title/digimon-list.png`" class="title" alt="Digimon List">
+        <img :src="getImageUrl('images/title/digimon-list.png')" class="title" alt="Digimon List">
         <div class="main-layout">
             <DigimonListFilter class="filter-section" @filter-change="updateFilters" />
             <div class="list-section">
@@ -38,6 +38,9 @@ export default {
         },
         handleDigimonSelected(digimonNumber) {
             this.$emit('digimon-selected', digimonNumber);
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 }

@@ -3,7 +3,7 @@
         <div class="name">
             <img class="element-grid" :alt="`${digimon.type}-${digimon.attribute}`"
                 :title="`${digimon.type}-${digimon.attribute}`"
-                :src="`http://localhost:9706/images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`" />
+                :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
             <p>{{ digimon.name }}</p>
         </div>
         <p class="number">No. {{ formattedNumber(digimon.number) }}</p>
@@ -34,6 +34,9 @@ export default {
         },
         toLowerCase(str) {
             return str.toLowerCase();
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 }

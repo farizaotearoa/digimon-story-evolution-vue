@@ -13,7 +13,7 @@
                 <ul v-if="dedigivolve.length" class="list-container">
                     <li v-for="digimon in dedigivolve" :key="digimon.number">
                         <p class="digimon-info">{{ digimon.name }}</p>
-                        <img :src="`http://localhost:9706/${digimon.icon}`" class="icon" :alt="digimon.name"
+                        <img :src="getImageUrl(digimon.icon)" class="icon" :alt="digimon.name"
                             :title="digimon.name" @click="selectDigimon(digimon.number)">
                     </li>
                 </ul>
@@ -27,7 +27,7 @@
             </svg>
             <div class="digimon-container">
                 <p class="digimon-info">{{ digimon.name }}</p>
-                <img :src="`http://localhost:9706/${digimon.icon}`" class="icon" :alt="digimon.name"
+                <img :src="getImageUrl(digimon.icon)" class="icon" :alt="digimon.name"
                     :title="digimon.name">
             </div>
             <svg width="50" height="100">
@@ -62,7 +62,7 @@
                                 </div>
                             </DigivolveRequirementModal>
                         </div>
-                        <img :src="`http://localhost:9706/${digimon.next_form_icon}`" class="icon"
+                        <img :src="getImageUrl(digimon.next_form_icon)" class="icon"
                             :alt="digimon.next_form_name" :title="digimon.next_form_name"
                             @click="selectDigimon(digimon.next_form)">
                     </li>
@@ -155,6 +155,9 @@ export default {
         hideModal() {
             this.modalVisible = false;
             this.activeDigimon = null;
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 }

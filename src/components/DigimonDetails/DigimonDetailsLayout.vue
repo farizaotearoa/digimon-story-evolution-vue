@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <img :src="`http://localhost:9706/images/title/digimon-details.png`" class="title" alt="Digimon Details">
+        <img :src="getImageUrl('images/title/digimon-details.png')" class="title" alt="Digimon Details">
         <div class="main-layout">
             <DigimonInfo @back="handleBack" :digimon="digimonDetails" class="left-section" />
             <div class="right-section">
@@ -54,6 +54,9 @@ export default {
         },
         handleDigimonSelected(digimonNumber) {
             this.$emit('digimon-selected', digimonNumber);
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 }

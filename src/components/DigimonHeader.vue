@@ -1,6 +1,6 @@
 <template>
     <div class="title">
-        <img :src="`http://localhost:9706/images/title/digimon-title.png`" class="image" alt="Digimon title">
+        <img :src="getImageUrl('images/title/digimon-title.png')" class="image" alt="Digimon title">
     </div>
 </template>
 
@@ -8,6 +8,11 @@
 export default {
     data() {
         return {};
+    },
+    methods: {
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
+        }
     }
 };
 </script>

@@ -26,12 +26,12 @@
             <div v-if="isGridView" class="grid-container">
                 <div v-for="digimon in digimons" :key="digimon.number" @click="selectDigimon(digimon.number)"
                     class="grid-item">
-                    <img :src="`http://localhost:9706/${digimon.image}`" class="image" :alt="digimon.name"
+                    <img :src="getImageUrl(digimon.image)" class="image" :alt="digimon.name"
                         :title="digimon.name">
                     <div class="flex-container">
                         <img class="element-grid" :alt="`${digimon.type}-${digimon.attribute}`"
                             :title="`${digimon.type}-${digimon.attribute}`"
-                            :src="`http://localhost:9706/images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`" />
+                            :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
                         <p class="name" style="margin-left:5px;">{{ digimon.name }}</p>
                     </div>
                     <p class="number">No. {{ formattedNumber(digimon.number) }}</p>
@@ -46,14 +46,14 @@
                 <li v-for="digimon in digimons" :key="digimon.number" class="list-item">
                     <div class="flex-container">
                         <div>
-                            <img :src="`http://localhost:9706/${digimon.icon}`" class="icon" :alt="digimon.name"
+                            <img :src="getImageUrl(digimon.icon)" class="icon" :alt="digimon.name"
                                 :title="digimon.name">
                         </div>
                         <div style="margin-left: 10px;">
                             <div class="flex-container">
                                 <img class="element-list" :alt="`${digimon.type}-${digimon.attribute}`"
                                     :title="`${digimon.type}-${digimon.attribute}`"
-                                    :src="`http://localhost:9706/images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`" />
+                                    :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
                                 <p class="name" style="font-size: 1em; margin-left:5px">{{ digimon.name }}</p>
                             </div>
                             <p class="number" style="margin-right:5px; font-size: 0.7em">
@@ -258,6 +258,9 @@ export default {
                 this.digimonListRequest.sort_order = "desc"
             }
             this.fetchDigimons()
+        },
+        getImageUrl(imagePath) {
+            return `${process.env.VUE_APP_API_URL}${imagePath}`;
         }
     }
 };
