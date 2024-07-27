@@ -2,11 +2,11 @@
     <div v-if="digimon" class="evolution-container">
         <p class="title">Evolution Chart</p>
         <div class="title-container">
-            <p>De-Digivolve</p>
+            <p>Digimon to De-Digivolve</p>
             <div class="arrow-gap"></div>
             <div></div>
             <div class="arrow-gap"></div>
-            <p>Digivolve</p>
+            <p>Digimon to Digivolve</p>
         </div>
         <div class="container">
             <div class="digimon-container">
@@ -18,7 +18,7 @@
                     </li>
                 </ul>
                 <div v-else>
-                    <p>Cannot dedigivolve further</p>
+                    <p>Cannot De-Digivolve further.</p>
                 </div>
             </div>
             <svg width="50" height="100">
@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 <div v-else>
-                    <p>Cannot digivolve further</p>
+                    <p>Cannot Digivolve further.</p>
                 </div>
             </div>
         </div>
