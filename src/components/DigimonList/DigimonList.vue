@@ -31,7 +31,7 @@
                     <div class="flex-container">
                         <img class="element-grid" :alt="`${digimon.type}-${digimon.attribute}`"
                             :title="`${digimon.type}-${digimon.attribute}`"
-                            :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
+                            :src="getImageUrl(`images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`)" />
                         <p class="name" style="margin-left:5px;">{{ digimon.name }}</p>
                     </div>
                     <p class="number">No. {{ formattedNumber(digimon.number) }}</p>
@@ -53,7 +53,7 @@
                             <div class="flex-container">
                                 <img class="element-list" :alt="`${digimon.type}-${digimon.attribute}`"
                                     :title="`${digimon.type}-${digimon.attribute}`"
-                                    :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
+                                    :src="getImageUrl(`images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`)" />
                                 <p class="name" style="font-size: 1em; margin-left:5px">{{ digimon.name }}</p>
                             </div>
                             <p class="number" style="margin-right:5px; font-size: 0.7em">

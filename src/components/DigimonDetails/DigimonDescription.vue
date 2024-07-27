@@ -3,7 +3,7 @@
         <div class="name">
             <img class="element-grid" :alt="`${digimon.type}-${digimon.attribute}`"
                 :title="`${digimon.type}-${digimon.attribute}`"
-                :src="getImageUrl(`images/element/${digimon.type}-${digimon.attribute}.png`)" />
+                :src="getImageUrl(`images/element/${toLowerCase(digimon.type)}-${toLowerCase(digimon.attribute)}.png`)" />
             <p>{{ digimon.name }}</p>
         </div>
         <p class="number">No. {{ formattedNumber(digimon.number) }}</p>
